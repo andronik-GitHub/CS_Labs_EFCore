@@ -13,5 +13,7 @@ namespace Hospital_db.Data.Models
 
         public int PatiendId { get; set; } // Foreign key
         public Patients patient { get; set; } = null!;
+        public int DoctorId { get; set; } // Foreign key
+        public Doctor doctor { get; set; } = null!;
     }
 }

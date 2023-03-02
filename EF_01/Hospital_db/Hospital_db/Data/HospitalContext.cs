@@ -11,6 +11,7 @@ namespace Hospital_db.Data
         public DbSet<Diagnoses> Diagnoses { get; set; }
         public DbSet<Medicaments> Medicaments { get; set; }
         public DbSet<PatientMedicament> Prescriptions { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
 
         public HospitalContext(DbContextOptions optinons)
             : base(optinons)
@@ -22,6 +23,7 @@ namespace Hospital_db.Data
         {
             modelBuilder.ApplyConfiguration(new PatientConfiguration());
             modelBuilder.ApplyConfiguration(new PatientMedicamentConfiguration());
+            modelBuilder.ApplyConfiguration(new DoctorCongifuration());
         }
     }
 }
