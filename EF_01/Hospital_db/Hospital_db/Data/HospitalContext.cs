@@ -7,6 +7,7 @@ namespace Hospital_db.Data
     public class HospitalContext : DbContext
     {
         public DbSet<Patients> Patients { get; set; }
+        public DbSet<Visitations> Visitations { get; set; }
 
         public HospitalContext(DbContextOptions optinons)
             : base(optinons)

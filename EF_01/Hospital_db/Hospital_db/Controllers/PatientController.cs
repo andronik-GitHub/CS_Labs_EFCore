@@ -25,12 +25,12 @@ namespace Hospital_db.Controllers
         }
 
         // GET: ef/patient/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
             Patients? patient = patientRepository.Get(id);
             if (patient == null)
-                return NotFound("The Employee record couldn't be found.");
+                return NotFound("The Patient record couldn't be found.");
 
             return Ok(patient);
         }
@@ -40,7 +40,7 @@ namespace Hospital_db.Controllers
         public IActionResult Post(Patients patient)
         {
             if (patient == null)
-                return BadRequest("Employee is null.");
+                return BadRequest("Patient is null.");
 
             patientRepository.Add(patient);
 
