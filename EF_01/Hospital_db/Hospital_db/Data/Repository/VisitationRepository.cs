@@ -20,7 +20,7 @@ namespace Hospital_db.Data.Repository
         public Visitations? Get(long id)
         {
             return _context.Visitations.FirstOrDefault(
-                p => p.VisitationId == id);
+                v => v.VisitationId == id);
         }
         public void Add(Visitations entity)
         {
