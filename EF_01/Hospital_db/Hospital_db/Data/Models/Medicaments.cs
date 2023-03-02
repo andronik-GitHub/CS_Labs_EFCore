@@ -7,8 +7,8 @@ namespace Hospital_db.Data.Models
         [Key]
         public int MedicamentId { get; set; }
         [MaxLength(50)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
-        public ICollection<PatientMedicament> Prescriptions { get; set; }
+        public ICollection<PatientMedicament> Prescriptions { get; set; } = new List<PatientMedicament>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace Hospital_db.Data.Models
 {
@@ -7,18 +8,18 @@ namespace Hospital_db.Data.Models
         [Key]
         public int PatientId { get; set; }
         [MaxLength(50)]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = null!;
         [MaxLength(50)]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = null!;
         [MaxLength(250)]
-        public string Address { get; set; }
+        public string Address { get; set; } = null!;
         [MaxLength(80)]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
         public bool HasInsurance { get; set; }
 
 
-        public ICollection<Visitations> Visitations { get; set; }
-        public ICollection<Diagnoses> Diagnoses { get; set; }
-        public ICollection<PatientMedicament> Prescriptions { get; set; }
+        public ICollection<Visitations> Visitations { get; set; } = new List<Visitations>();
+        public ICollection<Diagnoses> Diagnoses { get; set; } = new List<Diagnoses>();
+        public ICollection<PatientMedicament> Prescriptions { get; set; } = new List<PatientMedicament>();
     }
 }

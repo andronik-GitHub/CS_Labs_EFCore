@@ -8,10 +8,10 @@ namespace Hospital_db.Data.Models
         public int VisitationId { get; set; }
         public DateTime Date { get; set; }
         [MaxLength(250)]
-        public string Comments { get; set; }
+        public string Comments { get; set; } = null!;
 
-        
+
         public int PatiendId { get; set; } // Foreign key
-        public Patients patient { get; set; }
+        public Patients patient { get; set; } = null!;
     }
 }
