@@ -57,12 +57,12 @@ namespace Hospital_db.Controllers
             if (patient == null)
                 return BadRequest("Patient is null.");
 
-            Patients? employeeToUpdate = patientRepository.Get(id);
+            Patients? patientToUpdate = patientRepository.Get(id);
 
-            if (employeeToUpdate == null)
+            if (patientToUpdate == null)
                 return NotFound("The Patient record couldn't be found.");
 
-            patientRepository.Update(employeeToUpdate, patient);
+            patientRepository.Update(patientToUpdate, patient);
             return NoContent();
         }
 
