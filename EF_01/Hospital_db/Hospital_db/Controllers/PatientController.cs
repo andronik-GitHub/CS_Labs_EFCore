@@ -20,8 +20,8 @@ namespace Hospital_db.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Patients> employees = patientRepository.GetAll();
-            return Ok(employees);
+            IEnumerable<Patients> patients = patientRepository.GetAll();
+            return Ok(patients);
         }
 
         // GET: ef/patient/5
