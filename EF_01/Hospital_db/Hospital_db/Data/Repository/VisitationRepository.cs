@@ -17,10 +17,10 @@ namespace Hospital_db.Data.Repository
         {
             return _context.Visitations.ToList();
         }
-        public Visitations? Get(long id)
+        public Visitations? Get(object id)
         {
             return _context.Visitations.FirstOrDefault(
-                v => v.VisitationId == id);
+                v => v.VisitationId == (int)id);
         }
         public void Add(Visitations entity)
         {

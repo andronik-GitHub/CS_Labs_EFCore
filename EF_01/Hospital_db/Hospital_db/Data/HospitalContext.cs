@@ -10,6 +10,7 @@ namespace Hospital_db.Data
         public DbSet<Visitations> Visitations { get; set; }
         public DbSet<Diagnoses> Diagnoses { get; set; }
         public DbSet<Medicaments> Medicaments { get; set; }
+        public DbSet<PatientMedicament> Prescriptions { get; set; }
 
         public HospitalContext(DbContextOptions optinons)
             : base(optinons)

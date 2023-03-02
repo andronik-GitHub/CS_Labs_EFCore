@@ -27,7 +27,7 @@ namespace Hospital_db.Controllers
 
         // GET: ef/medicament/5
         [HttpGet("{id}")]
-        public IActionResult Get(long id)
+        public IActionResult Get(int id)
         {
             Medicaments? medicament = medicamentRepository.Get(id);
             if (medicament == null)

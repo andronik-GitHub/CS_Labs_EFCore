@@ -18,10 +18,10 @@ namespace Hospital_db.Data.Repository
         {
             return _context.Medicaments.ToList();
         }
-        public Medicaments? Get(long id)
+        public Medicaments? Get(object id)
         {
             return _context.Medicaments.FirstOrDefault(
-                m => m.MedicamentId == id);
+                m => m.MedicamentId == (int)id);
         }
         public void Add(Medicaments entity)
         {
