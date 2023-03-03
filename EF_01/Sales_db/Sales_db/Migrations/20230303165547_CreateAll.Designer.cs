@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sales_db.Data;
 
@@ -11,9 +12,11 @@ using Sales_db.Data;
 namespace Sales_db.Migrations
 {
     [DbContext(typeof(SalesContext))]
-    partial class SalesContextModelSnapshot : ModelSnapshot
+    [Migration("20230303165547_CreateAll")]
+    partial class CreateAll
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,10 +69,7 @@ namespace Sales_db.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Products", t =>
-                        {
-                            t.HasCheckConstraint("CK_Products_Quantity_RealNumber", "[Quantity] >= 0");
-                        });
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Sales_db.Data.Models.Sales", b =>

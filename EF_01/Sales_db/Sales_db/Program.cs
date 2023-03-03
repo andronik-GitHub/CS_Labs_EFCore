@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Sales_db.Data;
-
+using Sales_db.Data.Bogus;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +12,6 @@ builder.Services.AddDbContext<SalesContext>(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(); // Swagger
-
 
 
 var app = builder.Build();
@@ -28,5 +27,13 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+
+DataGenerator.InitBogusData();
+DataGenerator.GetSeededCustomersFromDb(app.Services.GetRequiredService<SalesContext>());
+
+
 app.MapControllers();
 app.Run();
+
+
+

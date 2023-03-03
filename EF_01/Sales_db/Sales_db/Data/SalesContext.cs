@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sales_db.Data.Bogus;
 using Sales_db.Data.Configuration;
 using Sales_db.Data.Models;
 
@@ -22,6 +23,11 @@ namespace Sales_db.Data
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new StoreConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+
+            modelBuilder.Entity<Products>().HasData(DataGenerator.Products);
+            modelBuilder.Entity<Customers>().HasData(DataGenerator.Customers);
+            modelBuilder.Entity<Stores>().HasData(DataGenerator.Stores);
+            modelBuilder.Entity<Sales>().HasData(DataGenerator.Sales);
         }
     }
 }

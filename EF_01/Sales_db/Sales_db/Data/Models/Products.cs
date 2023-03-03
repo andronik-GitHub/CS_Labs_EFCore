@@ -1,19 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Sales_db.Data.Bogus;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json;
 
 namespace Sales_db.Data.Models
 {
     public class Products
     {
         [Key]
-        public int ProductId { get; set; }
+        public Guid ProductId { get; set; }
         [MaxLength(50)]
         public string Name { get; set; } = string.Empty;
-        public int Quantity { get => Quantity; set { if (value >= 0) Quantity = value; } }
+        public int Quantity { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
 
+        [NotMapped]
+        public Personality Personality { get; set; }
         public ICollection<Sales> Sales { get; set; } = new List<Sales>();
+
+
+        // Для серіалізації та відступу наших даних, щоб добре відображати їх пізніше
+        public override string ToString()
+        {
+            return JsonSerializer.Serialize(this, new JsonSerializerOptions { WriteIndented = true });
+        }
     }
 }
