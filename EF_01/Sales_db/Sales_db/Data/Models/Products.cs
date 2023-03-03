@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sales_db.Data.Models
 {
@@ -9,6 +10,7 @@ namespace Sales_db.Data.Models
         [MaxLength(50)]
         public string Name { get; set; } = null!;
         public int Quantity { get => Quantity; set { if (value >= 0) Quantity = value; } }
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
 

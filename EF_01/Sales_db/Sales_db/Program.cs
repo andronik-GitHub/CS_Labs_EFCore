@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Sales_db.Data;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -11,6 +12,7 @@ builder.Services.AddDbContext<SalesContext>(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(); // Swagger
+
 
 
 var app = builder.Build();

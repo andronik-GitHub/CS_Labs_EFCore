@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Sales_db.Data.Configuration;
 using Sales_db.Data.Models;
 
 namespace Sales_db.Data
@@ -15,9 +16,12 @@ namespace Sales_db.Data
         {
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new StoreConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
         }
     }
 }
