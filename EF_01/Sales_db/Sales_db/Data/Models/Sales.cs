@@ -7,7 +7,7 @@ namespace Sales_db.Data.Models
     {
         [Key]
         public Guid SaleId { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = default!;
 
 
         public Guid ProductId { get; set; } // Foreign key

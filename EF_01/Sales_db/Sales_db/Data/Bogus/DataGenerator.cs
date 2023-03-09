@@ -10,10 +10,10 @@ namespace Sales_db.Data.Bogus
         public static readonly List<Stores> Stores = new();
         public static readonly List<Sales> Sales = new();
 
-        public const int PRODUCTS = 50;
-        public const int CUSTOMERS = 150;
-        public const int STORES = 15;
-        public const int SALES = 10;
+        public const int PRODUCTS = 30;
+        public const int CUSTOMERS = 100;
+        public const int STORES = 10;
+        public const int SALES = 5;
 
 
         private static Faker<Sales> GetSaleGenerator(Guid ProductId, Guid CustomerId, Guid StoreId)

@@ -9,7 +9,7 @@ namespace Sales_db.Data.Models
         [Key]
         public Guid StoreId { get; set; }
         [MaxLength(80)]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = default!;
 
 
         public ICollection<Sales> Sales { get; set; } = new List<Sales>();

@@ -24,10 +24,6 @@ if (app.Environment.IsDevelopment())
 }
 
 
-Console.WriteLine("DB Seeded Product: ");
-DataGenerator.InitBogusData();
-Console.WriteLine(DataGenerator.Sales.Count);
-
 
 //app.MapControllers();
 app.Run();

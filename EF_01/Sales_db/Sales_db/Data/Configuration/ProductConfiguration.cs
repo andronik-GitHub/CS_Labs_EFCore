@@ -17,6 +17,10 @@ namespace Sales_db.Data.Configuration
                         "CK_Products_Quantity_RealNumber",
                         "[Quantity] >= 0"
                     ));
+
+            builder
+                .Property(p => p.Description)
+                .HasDefaultValue("No description");
         }
     }
 }

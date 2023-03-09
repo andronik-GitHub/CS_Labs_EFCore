@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 
 namespace Sales_db.Data.Models
@@ -9,10 +8,10 @@ namespace Sales_db.Data.Models
         [Key]
         public Guid CustomerId { get; set; }
         [MaxLength(100)]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; } = default!;
         [MaxLength(80)]
-        public string Email { get; set; } = string.Empty;
-        public string CreaditCardNumber { get; set; } = string.Empty;
+        public string Email { get; set; } = default!;
+        public string CreaditCardNumber { get; set; } = default!;
 
 
         public ICollection<Sales> Sales { get; set; } = new List<Sales>();

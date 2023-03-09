@@ -26,6 +26,7 @@ namespace Sales_db.Data
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new StoreConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new SaleConfiguration());
 
             
             DataGenerator.InitBogusData();
