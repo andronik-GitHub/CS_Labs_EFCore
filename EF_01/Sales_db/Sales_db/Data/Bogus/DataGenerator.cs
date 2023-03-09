@@ -75,7 +75,7 @@ namespace Sales_db.Data.Bogus
                     GetStoreGenerator() // витягування об'єкта Faker<Stores> та
                     .Generate(STORES) // створення даних в кількості STORES
                 );
-            // InitData_Bogus
+
             // Створення і занесення об'єктів Sales по колекціям Products, Customers, Stores
             // SALES == 10 => 10 x 10 = 100 * 2
             for (int i = 0; i < SALES; i++)
