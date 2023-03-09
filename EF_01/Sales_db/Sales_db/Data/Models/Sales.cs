@@ -11,11 +11,11 @@ namespace Sales_db.Data.Models
 
 
         public Guid ProductId { get; set; } // Foreign key
-        public Products Product { get; set; } = null!;
+        public Products Product { get; set; } = default!;
         public Guid CustomerId { get; set; } // Foreign key
-        public Customers Customer { get; set; } = null!;
+        public Customers Customer { get; set; } = default!;
         public Guid StoreId { get; set; } // Foreign key
-        public Stores Store { get; set; } = null!;
+        public Stores Store { get; set; } = default!;
 
 
         // Для серіалізації та відступу наших даних, щоб добре відображати їх пізніше

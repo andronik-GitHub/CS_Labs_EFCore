@@ -1,5 +1,4 @@
-﻿using Sales_db.Data.Bogus;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json;
 
@@ -16,8 +15,6 @@ namespace Sales_db.Data.Models
         public string CreaditCardNumber { get; set; } = string.Empty;
 
 
-        [NotMapped]
-        public Personality Personality { get; set; }
         public ICollection<Sales> Sales { get; set; } = new List<Sales>();
 
 

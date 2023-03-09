@@ -2,16 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Sales_db.Data;
 using Sales_db.Data.Bogus;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 
+//builder.Services.AddControllers();
 builder.Services.AddDbContext<SalesContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
-
-
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(); // Swagger
 
 
 var app = builder.Build();
@@ -28,12 +24,11 @@ if (app.Environment.IsDevelopment())
 }
 
 
+Console.WriteLine("DB Seeded Product: ");
 DataGenerator.InitBogusData();
-DataGenerator.GetSeededCustomersFromDb(app.Services.GetRequiredService<SalesContext>());
+Console.WriteLine(DataGenerator.Sales.Count);
 
 
-app.MapControllers();
+//app.MapControllers();
 app.Run();
-
-
 

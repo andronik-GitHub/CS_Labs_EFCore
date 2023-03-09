@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogus;
+using Microsoft.EntityFrameworkCore;
 using Sales_db.Data.Bogus;
 using Sales_db.Data.Configuration;
 using Sales_db.Data.Models;
@@ -12,7 +13,7 @@ namespace Sales_db.Data
         public DbSet<Stores> Stores { get; set; }
         public DbSet<Products> Products { get; set; }
 
-        public SalesContext(DbContextOptions options)
+        public SalesContext(DbContextOptions<SalesContext> options)
             : base(options)
         {
         }
@@ -20,10 +21,14 @@ namespace Sales_db.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new StoreConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
 
+            
+            DataGenerator.InitBogusData();
             modelBuilder.Entity<Products>().HasData(DataGenerator.Products);
             modelBuilder.Entity<Customers>().HasData(DataGenerator.Customers);
             modelBuilder.Entity<Stores>().HasData(DataGenerator.Stores);
