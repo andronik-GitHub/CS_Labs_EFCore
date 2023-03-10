@@ -9,6 +9,11 @@ namespace Student_System.Data.Configurations
         public void Configure(EntityTypeBuilder<Courses> builder)
         {
             builder
+                .Property(c => c.Price)
+                .HasColumnType("decimal(18,2)");
+
+
+            builder
                 .HasMany(c => c.StudentsCourses)
                 .WithOne(sc => sc.Course)
                 .HasForeignKey(sc => sc.CourseId);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Student_System.Data.Bogus;
 using Student_System.Data.Configurations;
 using Student_System.Data.Models;
 
@@ -27,6 +28,13 @@ namespace Student_System.Data
             modelBuilder.ApplyConfiguration(new ResourceConfiguration());
             modelBuilder.ApplyConfiguration(new HomeworkConfiguration());
             modelBuilder.ApplyConfiguration(new StudentCourseConfiguration());
+
+            DataGenerator.InitBogusData();
+            modelBuilder.Entity<Students>().HasData(DataGenerator.Students);
+            modelBuilder.Entity<Courses>().HasData(DataGenerator.Courses);
+            modelBuilder.Entity<Resources>().HasData(DataGenerator.Resources);
+            modelBuilder.Entity<Homework>().HasData(DataGenerator.Homework);
+            modelBuilder.Entity<StudentsCourses>().HasData(DataGenerator.StudentsCourses);
         }
     }
 }
