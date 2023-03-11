@@ -1,11 +1,16 @@
-﻿using BillsPaymentSystem.Data.Models.Entities;
+﻿using BillsPaymentSystem.Data.DBContext;
+using BillsPaymentSystem.Data.Models.Entities;
 using BillsPaymentSystem.Data.Models.Enums;
 using Bogus;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace BillsPaymentSystem.Data.Bogus
 {
     public class DataGenerator
     {
+        public static DbContextOptionsBuilder<BillsPaymentSystemContext> options = new();
+
         public static readonly List<User> Users = new();
         public static readonly List<CreditCard> CreditCards = new();
         public static readonly List<BankAccount> BankAccounts = new();
@@ -106,6 +111,80 @@ namespace BillsPaymentSystem.Data.Bogus
                             CreditCardId
                         )
                     );
+            }
+        }
+
+        public static string GetSeededUserFromDb(Guid UserId)
+        {
+            using var dbContext = new BillsPaymentSystemContext(options.Options);
+
+            dbContext.Database.EnsureCreated();
+
+
+            var paymentMethods = dbContext.PaymentMethods.FirstOrDefault(x => x.UserId == UserId);
+
+            if (paymentMethods == null) return $"User with Id({UserId}) not found!";
+            else
+            {
+                var stringBuilder = new StringBuilder();
+
+                var user = dbContext.Users.First(u => u.UserId == UserId);
+                stringBuilder.AppendLine($"User: {user.FirtsName + " " + user.LastName}");
+
+                if (paymentMethods.BankAccountId == null)
+                {
+                    var CreditCard = dbContext.CreditCards
+                        .First(cc => cc.CreditCardId == paymentMethods.CreditCardId);
+
+                    stringBuilder.AppendLine("Credit Card:");
+                    stringBuilder.AppendLine(CreditCard.ToString());
+                }
+                else
+                {
+                    var BankAccount = dbContext.BankAccounts
+                        .First(ba => ba.BankAccountId == paymentMethods.BankAccountId);
+
+                    stringBuilder.AppendLine("Bank Account:");
+                    stringBuilder.AppendLine(BankAccount.ToString());
+                }
+
+
+                return stringBuilder.ToString();
+            }
+        }
+
+        public static string PayBills(Guid UserId, decimal amount)
+        {
+            using var dbContext = new BillsPaymentSystemContext(options.Options);
+
+            dbContext.Database.EnsureCreated();
+
+
+            var paymentMethods = dbContext.PaymentMethods.FirstOrDefault(x => x.UserId == UserId);
+
+            if (paymentMethods == null) return $"User with Id({UserId}) not found!";
+            else
+            {
+                if (paymentMethods.BankAccountId == null)
+                {
+                    var CreditCard = dbContext.CreditCards
+                        .First(cc => cc.CreditCardId == paymentMethods.CreditCardId);
+
+                    if (CreditCard.Withdraw(amount))
+                        return $"{amount}$ has been withdrawn from the Credit Card of the user ({UserId}).";
+                    else
+                        return $"User({UserId}) has insufficient funds from the Credit Card!";
+                }
+                else
+                {
+                    var BankAccount = dbContext.BankAccounts
+                        .First(ba => ba.BankAccountId == paymentMethods.BankAccountId);
+
+                    if (BankAccount.Withdraw(amount))
+                        return $"{amount}$ has been withdrawn from the Bank Account of the user ({UserId}).";
+                    else
+                        return $"User({UserId}) has insufficient funds from the Bank Account!";
+                }
             }
         }
     }
