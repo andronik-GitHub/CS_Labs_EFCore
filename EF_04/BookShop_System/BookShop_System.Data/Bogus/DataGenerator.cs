@@ -1,6 +1,8 @@
 ﻿using Bogus;
+using BookShop_System.Data.DBContext;
 using BookShop_System.Data.Models.Entities;
 using BookShop_System.Data.Models.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookShop_System.Data.Bogus
 {
@@ -76,10 +78,12 @@ namespace BookShop_System.Data.Bogus
 
             Books.ForEach(book =>
             {
-                var CategoryId = Categories[new Random().Next(0, CATEGORIES - 1)].CategoryId;
-
-                if (!BookCategories.Any(bc => bc.BookId == book.BookId && bc.CategoryId == CategoryId))
-                    BookCategories.AddRange(GetBogusBookCategoryData(book.BookId, CategoryId));
+                if (!BookCategories.Any(bc => bc.BookId == book.BookId))
+                        BookCategories.AddRange(GetBogusBookCategoryData(
+                            book.BookId, 
+                            Categories[new Random().Next(0, CATEGORIES - 1)].CategoryId
+                        )
+                    );
             });
 
             // Don't work with EF Core but work in console(not in db)
