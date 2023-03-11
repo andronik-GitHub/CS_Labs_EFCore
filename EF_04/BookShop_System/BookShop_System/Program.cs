@@ -1,3 +1,4 @@
+using BookShop_System.Data.Bogus;
 using BookShop_System.Data.DBContext;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,5 +11,6 @@ builder.Services.AddDbContext<BookShopContext>(
 
 
 var app = builder.Build();
+
 
 app.Run();

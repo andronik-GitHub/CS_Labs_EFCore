@@ -1,4 +1,6 @@
-﻿using BookShop_System.Data.Configurations;
+﻿using BookShop_System.Data.Bogus;
+using BookShop_System.Data.Configurations;
+using BookShop_System.Data.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShop_System.Data.DBContext
@@ -19,6 +21,12 @@ namespace BookShop_System.Data.DBContext
             modelBuilder.ApplyConfiguration(new BookConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new BookCategoryConfiguration());
+
+            DataGenerator.InitBogusData();
+            modelBuilder.Entity<Author>().HasData(DataGenerator.Authors);
+            modelBuilder.Entity<Book>().HasData(DataGenerator.Books);
+            modelBuilder.Entity<Category>().HasData(DataGenerator.Categories);
+            modelBuilder.Entity<BookCategory>().HasData(DataGenerator.BookCategories);
         }
     }
 }
