@@ -1,5 +1,4 @@
 ﻿using Bogus;
-using BookShop_System.Data.DBContext;
 using BookShop_System.Data.Models.Entities;
 using BookShop_System.Data.Models.Enums;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +28,7 @@ namespace BookShop_System.Data.Bogus
         {
             return new Faker<Book>()
                 .RuleFor(b => b.BookId, _ => Guid.NewGuid())
-                .RuleFor(b => b.Title, f => f.Lorem.Word())
+                .RuleFor(b => b.Title, f => f.Company.CompanyName())
                 .RuleFor(b => b.Description, f => f.Lorem.Text())
                 .RuleFor(b => b.ReleaseDate,
                     f => f.Date.Between(DateTime.Now.AddYears(-50), DateTime.Now.AddYears(10)).OrNull(f, 0.2f))
@@ -43,7 +42,7 @@ namespace BookShop_System.Data.Bogus
         {
             return new Faker<Category>()
                 .RuleFor(c => c.CategoryId, _ => Guid.NewGuid())
-                .RuleFor(c => c.Name, f => f.Lorem.Word());
+                .RuleFor(c => c.Name, f => f.Name.JobTitle() + " " + f.Lorem.Word());
         }
         private static Faker<BookCategory> GetBookCategoryGenerator(Guid BookId, Guid CategoryId)
         {

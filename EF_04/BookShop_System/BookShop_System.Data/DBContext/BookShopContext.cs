@@ -7,6 +7,11 @@ namespace BookShop_System.Data.DBContext
 {
     public class BookShopContext : DbContext
     {
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<BookCategory> BookCategories { get; set; }
+
         public BookShopContext(DbContextOptions<BookShopContext> options)
             : base(options)
         {

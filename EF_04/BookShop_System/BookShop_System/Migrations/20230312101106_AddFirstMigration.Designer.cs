@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookShop_System.Migrations
 {
     [DbContext(typeof(BookShopContext))]
-    [Migration("20230311073530_AddFirstMigration")]
+    [Migration("20230312101106_AddFirstMigration")]
     partial class AddFirstMigration
     {
         /// <inheritdoc />
@@ -103,7 +103,7 @@ namespace BookShop_System.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("BookCategory");
+                    b.ToTable("BookCategories");
                 });
 
             modelBuilder.Entity("BookShop_System.Data.Models.Entities.Category", b =>
